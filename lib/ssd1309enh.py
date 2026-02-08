@@ -5,7 +5,7 @@ from framebuf import FrameBuffer, GS8, MONO_HMSB, MONO_VLSB  # type: ignore
 from utime import sleep_ms  # type: ignore
 
 
-class Display(object):
+class SSD1309(object):
     """Serial and I2C interface for SD1309 monochrome OLED display.
 
     Note:  All coordinates are zero based.

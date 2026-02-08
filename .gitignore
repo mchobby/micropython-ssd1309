@@ -1,3 +1,4 @@
+*.xcf
 .flake8
 .ftpconfig
 .pylintrc
@@ -5,3 +6,4 @@
 dev-requirements.txt
 micropy.json
 requirements.txt
+pushgit.sh

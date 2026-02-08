@@ -1,15 +1,17 @@
 """SSD1309 demo (flip)."""
 from time import sleep
-from machine import Pin, SPI  # type: ignore
+from machine import Pin, I2C  # type: ignore
 from xglcd_font import XglcdFont
-from ssd1309 import Display
+from ssd1309enh import SSD1309
 
 
 def test():
     """Test code."""
-    spi = SPI(1, baudrate=10000000, sck=Pin(14), mosi=Pin(13))
+    #spi = SPI(1, baudrate=10000000, sck=Pin(14), mosi=Pin(13))
+    i2c = I2C( 1, sda=Pin(6), scl=Pin(7), freq=400000 )
     # Initialize display flipped 180 degrees
-    display = Display(spi, dc=Pin(4), cs=Pin(5), rst=Pin(2), flip=True)
+    #display = SSD1309( spi, dc=Pin(4), cs=Pin(5), rst=Pin(2), flip=True)
+    display = SSD1309( i2c=i2c, flip=True )
 
     print("Loading font.  Please wait.")
     bitstream = XglcdFont('fonts/Bitstream_Vera35x32.c', 35, 32)

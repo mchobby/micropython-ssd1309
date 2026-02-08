@@ -1,15 +1,15 @@
 """SSD1309 demo (shapes)."""
 from time import sleep
-from machine import Pin, SPI  # type: ignore
-from ssd1309 import Display
+from machine import Pin, I2C  # type: ignore
+from ssd1309enh import SSD1309
 
 
 def test():
     """Test code."""
-    spi = SPI(1, baudrate=10000000, sck=Pin(14), mosi=Pin(13))  # ESP32 SPI 1
-    display = Display(spi, dc=Pin(4), cs=Pin(5), rst=Pin(2))
-    # i2c = I2C(0, freq=400000, scl=Pin(5), sda=Pin(4))  # Pico I2C bus 1
-    # display = Display(i2c=i2c, rst=Pin(2))
+    #spi = SPI(1, baudrate=10000000, sck=Pin(14), mosi=Pin(13))  # ESP32 SPI 1
+    #display = Display(spi, dc=Pin(4), cs=Pin(5), rst=Pin(2))
+    i2c = I2C(1, freq=400000, scl=Pin(7), sda=Pin(6))  # Pico I2C bus 1
+    display = SSD1309(i2c=i2c)
 
     display.draw_rectangle(1, 1, 30, 30)
     display.fill_rectangle(6, 6, 20, 20)

@@ -1,0 +1,7 @@
+{
+  "urls": [
+    ["ssd1309enh.py", "github:mchobby/micropython-ssd1309/lib/ssd1309enh.py"],
+    ["xglcd_font.py", "github:mchobby/micropython-ssd1309/lib/xglcd_font.py"]
+  ],
+  "version": "1.0"
+}

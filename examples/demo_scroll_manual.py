@@ -1,18 +1,18 @@
 """SSD1309 demo (scroll manual)."""
 from random import choice
 from time import sleep
-from machine import Pin, SPI  # type: ignore
-from ssd1309 import Display
+from machine import Pin, I2C
+from ssd1309enh import SSD1309
 
 
 def test():
     """Test code."""
-    spi = SPI(2, baudrate=10000000, sck=Pin(12), mosi=Pin(11))  # Lolin S3 SPI2
-    display = Display(spi, dc=Pin(16), cs=Pin(10), rst=Pin(18))
+    #spi = SPI(2, baudrate=10000000, sck=Pin(12), mosi=Pin(11))  # Lolin S3 SPI2
+    #display = Display(spi, dc=Pin(16), cs=Pin(10), rst=Pin(18))
     # spi = SPI(1, baudrate=10000000, sck=Pin(14), mosi=Pin(13))  # ESP32 SPI1
     # display = Display(spi, dc=Pin(4), cs=Pin(5), rst=Pin(2))
-    # i2c = I2C(0, freq=400000, scl=Pin(5), sda=Pin(4))  # Pico I2C bus1
-    # display = Display(i2c=i2c, rst=Pin(2))
+    i2c = I2C(1, freq=400000, scl=Pin(7), sda=Pin(6))  # Pico I2C bus1
+    display = SSD1309(i2c=i2c)
 
     # Invader demo
     display.clear()

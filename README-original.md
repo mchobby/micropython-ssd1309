@@ -1,4 +1,7 @@
 # MicroPython SPI & I2C Display Driver for SSD1309 monochrome OLED
+
+This is the [original README file from rdagger/micropython-ssd1309](https://github.com/rdagger/micropython-ssd1309) .
+
 The library supports drawing lines, shapes, text, sprites and images.  All code is documented and there are demo examples.
 
 Sample XGLCD fonts are included in the fonts folder.  Additional fonts can generated from TTF fonts using a free utility called MikroElektronika [GLCD Font Creator](https://www.mikroe.com/glcd-font-creator).
