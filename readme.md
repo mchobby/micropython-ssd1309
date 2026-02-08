@@ -1,50 +1,52 @@
-# MicroPython SPI & I2C ADVANCED Display Driver for SSD1309 monochrome OLED
+[This file also exists in ENGLISH](readme_ENG.md)
 
-This repository is based on the great work of [rdagger/micropython-ssd1309](https://github.com/rdagger/micropython-ssd1309) !
+# Pilote SPI & I2C avancé pour controleur d'affichage OLED SSD1309 sous MicroPython
 
-![HS242L03 ssd1309 2.42" wired over I2C to a Pico](docs/_static/ssd1309-example.jpg)
+Ce dépôt est basé sur le magnifique travail [rdagger/micropython-ssd1309](https://github.com/rdagger/micropython-ssd1309) !
 
-The library is truly full of features, it can: 
+![HS242L03 ssd1309 2.42" raccordé via I2C sur un Pico](docs/_static/ssd1309-example.jpg)
 
-* Work over SPI and I2C
-* draw lines, shapes, 
-* draw text with on the fly font loading, 
-* draw sprites,
-* draw images,  
-* Scroll content (hardware support).
+Cette bibliothèque propose de nombreuses fonctionnalités, elle peut: 
 
-Features have a cost, the library make 38 Ko in size (44.8 Ko with font support)
+* fonctionner via un bus SPI ou I2C,
+* dessiner des lignes et des formes, 
+* afficher du texte avec chargement dynamique de la font, 
+* afficher des sprites,
+* afficher des images,  
+* Défillement (scroll) du contenu (avec support matériel).
 
-All code is documented and there are demo examples. This version of the library have been reorganiszed and and main class renamed SSD1309. Code and examples have been tested with Hardware I2C on Raspberry-Pi Pico.
+Ces fonctionnalités ont un coût, la bibliothèque présente une taille de 38 Ko (44.8 Ko avec le support pour font)
 
-## about fonts
-Sample XGLCD fonts are included in the fonts folder.  Additional fonts can generated from TTF fonts using a free utility called MikroElektronika [GLCD Font Creator](https://www.mikroe.com/glcd-font-creator).
+Tout le code est documenté et dispose d'exemples. Cette version de la bibliothèque est réorganisé et la classe principale renommée SSD1309. Le code et les exemples on été testés avec un bus I2C matériel d'un Raspberry-Pi Pico.
 
-The folder [fonts/](fonts/) contains font files that can be copied on the MicroPython plateform (preference in a `fonts` subfolder). 
+## A propos des fonts
+Des exemples de fonts XGLCD sont inclus dans le répertoire [fonts/](fonts/). Des fonts supplémentaires peuvent être générés depuis des fonts TTF en utilisant le logiciel libre MikroElektronika [GLCD Font Creator](https://www.mikroe.com/glcd-font-creator).
 
-Remarks: 
+Le répertoire [fonts/](fonts/) contains font files that can be copied on the MicroPython plateform (preference in a `fonts` subfolder). 
 
-* fonts are c files parsed on the fly by the library to creates a binary representation in memory.
-* fonts file may be very large in size!
+Remarques: 
 
-## about images
+* Les fonts sont des fichiers c traité (`parsed`) à la volée par la bibliothèque afin de créer une représentation binaire en mémoire.
+* Les fichiers `fonts` sont généralement volumineux!
 
-The library can load monochrome images at monoHMSB format. The library contains several samples images are available in the [images/](images/) folder.
+## A propos des images
 
-The [utils/img2monoHMSB.py](utils/img2monoHMSB.py) utility converts images in common formats such as JPEG and PNG to monoHMSB.
+La bibliothèque peut charger des images monochrome au format monoHMSB. La bibliothèque contient plusieurs exemples d'images disponibles dans le répertoire [images/](images/).
 
-# Library
+L'utilitaire [utils/img2monoHMSB.py](utils/img2monoHMSB.py) permet de convertir des images au format JPEG et PNG vers le format monoHMSB.
 
-The library must be copied on the MicroPython board before using the examples.
+# Bibliothèque
 
-On a WiFi capable plateform:
+La bibliothèque doit être copiée sur la carte MicroPython avant d'utiliser les exemples.
+
+Sur une plateforme MicroPython avec WiFi:
 
 ```
 >>> import mip
 >>> mip.install("github:mchobby/micropython-ssd1309")
 ```
 
-Or via the mpremote utility :
+Ou en utilisant l'utilitaire `mpremote` depuis un ordinateur :
 
 ```
 mpremote mip install github:mchobby/micropython-ssd1309
@@ -52,48 +54,48 @@ mpremote mip install github:mchobby/micropython-ssd1309
 
 ## Fonts & images
 
-Driver installation does not copy images or fonts files to your MicroPython plateform.
+L'installation du pilote ne copie pas les images vers le système de fichiers MicroPython.
 
-__You have to copy manually such ressources on purpose.__
+__Vous aurez besoin de copier ces ressources manuellement lorsque cela sera nécessaire.__
 
-# Wiring 
-## I2C Wiring with Pico
+# Brancher
+## Branchement I2C avec Pico
 
-![SSD1309 I2C to Pico](docs/_static/ssd1309-i2c-to-pico.jpg)
+![SSD1309 I2C vers Pico](docs/_static/ssd1309-i2c-to-pico.jpg)
 
-# Examples
+# Exemples
 
 ## Demo Shapes
-The [examples/demo_shape.py](examples/demo_shapes.py) script draw various shapes thank to the methods supported by the SSD1309. 
+Le script [examples/demo_shape.py](examples/demo_shapes.py) dessine différentes formes grâce aux différentes méthodes de la bibliothèque SSD1309. 
 
-![Drawing shapes](docs/_static/demo_shapes.jpg)
+![Dessiner des formes](docs/_static/demo_shapes.jpg)
 
 ## Demo Scroll Manual
-The [examples/demo_scroll_manual.py](examples/demo_scroll_manual.py) script demonstrate the hardware scrolling. 
+Le script [examples/demo_scroll_manual.py](examples/demo_scroll_manual.py) démontre l'usage du défilement matériel. 
 
-This update enables smooth, efficient scrolling with minimal processor usage—here's a short video from the demo.
+Cela offre un défillement fluide et efficace avec un minimum de surcharge processeur.
 
-The first part of the script make an image scrolling from left to right on the screen.
-![hardware scrolling between left and right](docs/_static/demo_scroll_manual-00.jpg)
+La première partie du script fait défiller une image de droite à gauche sur l'écran.
+![Défillement Matériel de gauche à droite](docs/_static/demo_scroll_manual-00.jpg)
 
-The second section of the script make the background montains scrolling under the space ship.
+La seconde section du script fait défiller les montages en arrière plan sous le vaisseau spacial.
 
-![hardware scrolling of montains](docs/_static/demo_scroll_manual-01.jpg)
+![Défillement matériel des montagnes](docs/_static/demo_scroll_manual-01.jpg)
 
 https://github.com/user-attachments/assets/14209ff1-a0f7-4997-b1d5-76dab3f15c07
 
 ## Demo Scroll
-The [examples/demo_scroll.py](examples/demo_scroll.py) script load a font draw text and graphical object THEN organise various scroll operation (including some Split Scroll).
+Le script [examples/demo_scroll.py](examples/demo_scroll.py) charge une font, dessine du texte et objet graphique PUIS organise différentes opérations de défillement (incluant du Split Scroll).
 
 ## Demo Flip
-The [examples/demo_flip.py](examples/demo_flip.py) script load a font and the a wifi image to display the following content and flip it over.
+Le script [examples/demo_flip.py](examples/demo_flip.py) charge une font et une image WiFi pour l'afficher sur l'écran PUIS retourne le contenu sur l'écran.
 
-![demo_flip.py capture](docs/_static/demo_flip-00.jpg) ![demo_flip.py capture](docs/_static/demo_flip-01.jpg) 
+![capture de demo_flip.py](docs/_static/demo_flip-00.jpg) ![capture de demo_flip.pycapture](docs/_static/demo_flip-01.jpg) 
 
 ## Demo fonts
-The [examples/demo_fonts.py](examples/demo_fonts.py) script load several fonts and display text (with all the fonts together) on a single screen.
+Le script [examples/demo_fonts.py](examples/demo_fonts.py) charge différentes fonts et affiche du texte (en utilisant toutes les fonts en une fois) sur l'afficheur.
 
-Load the following fonts:
+Charge les fonts suivantes:
 
 * Bitstream_Vera35x32.c
 * Bally7x9.c
@@ -101,25 +103,25 @@ Load the following fonts:
 * Wendy7x8.c
 
 ## Demo Images
-The [examples/demo_images.py](examples/demo_images.py) script load monochrome HMSB images and display them on the screen.
+Le script [examples/demo_images.py](examples/demo_images.py) charge des images monochrome HMSB et les affiches sur l'écran.
 
-Load the following images:
+Charge les images suivantes:
 
 * eyes_128x42.mono
 * doggy_jet128x64.mono
 * invaders_48x36.mono
 
 ## Demo Sprite
-The [examples/demo_sprite.py](examples/demo_sprite.py) script load the `saucer_48x26.mono` monochrome HMSB image, wrap it into the `BouncingSprite` class then make it bouncing on the screen.
+Le script [examples/demo_sprite.py](examples/demo_sprite.py) charge l'image `saucer_48x26.mono` (monochrome HMSB), l'encapsule dans la classe `BouncingSprite` puis fait la fait rebondir sur l'écran.
 
 ## Demo Bouncing Boxes
-The [examples/demo_bouncing_boxes.py](examples/demo_bouncing_boxes.py) script shows several boxes in various size bouncing into the screen. 
+Le script [examples/demo_bouncing_boxes.py](examples/demo_bouncing_boxes.py) affiche plusieurs boites de taille différentes qui rebondissent sur l'écran. 
 
 # Ressources
 
-* Tutorial about the original library on [Rototron website](https://www.rototron.info/projects/wi-fi-caller-id-blocking/). See also the [YouTube video](https://youtu.be/GhXtQNxpKeo)
-* another [tutorial](https://www.rototron.info/projects/wi-fi-caller-id-blocking/) using the origial library. See also the attached [YouTube video](https://youtu.be/b63ZPafPQVM)
+* Tutoriel de la bibliothèque originale sur le [Rototron website](https://www.rototron.info/projects/wi-fi-caller-id-blocking/). Voir aussi la [vidéo YouTube](https://youtu.be/GhXtQNxpKeo)
+* Un autre [tutoriel](https://www.rototron.info/projects/wi-fi-caller-id-blocking/) utilisant la bibliothèque originale. Voir la [vidéo YouTube](https://youtu.be/b63ZPafPQVM) correspondante.
 
-Hardware scrolling is now supported. This update enables smooth, efficient scrolling with minimal processor usage—here's a short video from the demo.
+Exemple vidéo du défillement matériel:
 
 https://github.com/user-attachments/assets/14209ff1-a0f7-4997-b1d5-76dab3f15c07
